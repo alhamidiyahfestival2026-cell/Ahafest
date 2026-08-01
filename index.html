@@ -1,98 +1,7 @@
-
-Claude selesai merespons
-1785573951485_image.png
-
-<!DOCTYPE html> <!-- Favicon untuk Tab Browser - Menggunakan Logo AHAFEST --> <link rel="icon" type="image/png" href="https://i.imgur.com/aYj0llx.png"> <script src="https://cdn.tailwindcss.com"></script> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel
-
-pasted
-
-
-Assembled complete HTML file structure
-Assembled complete HTML file structure
-Sudah saya tambahkan jadwal Funwalk di tanggal 23 September 2026, tepat di bawah "Pembukaan Pendaftaran" pada bagian Jadwal Acara.
-
-
-Menjalankan perintah, membaca file
-Menjalankan perintah, membaca file
-Item baru "Funwalk" (23 September 2026, 06:00 WIB, di Lapangan Utama) sudah masuk di jadwal, persis di bawah "Pembukaan Pendaftaran" dan sebelum "Penutupan Pendaftaran". Silakan cek dan sesuaikan jam/lokasi/deskripsinya kalau ada detail lain yang perlu diubah.
-
-
-Ahafest
-Kode · HTML 
-hilangkan slide maskot dan ubah wishlist guestar cuman opick doang dengan ini (https://imgur.com/flCN2Eb) link gambarnya
-
-
-Melihat 2 file, menjalankan perintah
-Melihat 2 file, menjalankan perintah
-Sekarang saya hapus seluruh section Mascots, termasuk link navigasinya di menu.
-
-
-Mengedit 3 file
-Mengedit 3 file
-Sekarang ubah bagian Guest Star supaya hanya menampilkan Opick dengan gambar dari link tersebut.
-
-
-Merancang fallback JavaScript untuk menangani loading gambar alternatif
-Merancang fallback JavaScript untuk menangani loading gambar alternatif
-Karena saya tidak bisa memverifikasi ekstensi file gambar langsung dari Imgur (situs itu diblokir dari sisi tool), saya buat gambar tersebut otomatis mencoba beberapa format umum (jpg/jpeg/png) supaya tetap tampil meskipun ekstensi persisnya berbeda.
-
-
-Mengedit file, menjalankan perintah, membaca file
-Mengedit file, menjalankan perintah, membaca file
-Sudah selesai:
-
-Section Maskot — dihapus sepenuhnya, termasuk link "Mascots" di menu navigasi (desktop & mobile).
-Wishlist Guest Star — diubah jadi hanya menampilkan Opick, dengan foto dari link Imgur yang kamu berikan, dan judul section diganti jadi "Guest Star" (bukan lagi "Wishlist" karena sudah pasti, bukan wishlist).
-Catatan kecil: saya tidak bisa mengakses langsung halaman Imgur untuk memastikan ekstensi file gambarnya (.jpg/.jpeg/.png), jadi saya pasang fallback otomatis — kalau satu format gagal dimuat, browser akan mencoba format lain. Kalau gambarnya tidak muncul, kasih tahu saya link direct-nya (biasanya format https://i.imgur.com/flCN2Eb.jpg) dan saya perbaiki.
-
-
-Ahafest
-Kode · HTML 
-https://imgur.com/a/ATWRpTl
-ini coba utk gambar opick nya
-
-
-Identified imgur album limitation, requested direct image link instead
-Identified imgur album limitation, requested direct image link instead
-Saya tidak bisa mengakses link itu langsung (situs Imgur diblokir dari sisi tool saya untuk fetch), dan imgur.com/a/ATWRpTl adalah link album — bukan link gambar langsung, jadi saya tidak bisa menebak nama file gambar di dalamnya.
-
-Supaya gambarnya pasti muncul, tolong berikan salah satu dari:
-
-Direct image link — buka gambarnya di Imgur, klik kanan → "Copy image address" (biasanya berbentuk https://i.imgur.com/xxxxxxx.jpg), atau
-Upload gambarnya langsung ke chat ini, biar saya proses.
-Begitu saya dapat link/gambar langsungnya, saya update section Guest Star-nya.
-
-[img]https://i.imgur.com/flCN2Eb.jpeg[/img]
-ini?
-
-
-Streamlined image handling approach for direct implementation
-Streamlined image handling approach for direct implementation
-Oke, itu link yang sama dengan yang saya pakai sebelumnya (flCN2Eb.jpeg). Saya sudah pasang sebagai gambar utama Opick, jadi seharusnya sudah tampil. Saya rapikan kodenya jadi langsung pakai link itu saja tanpa fallback ekstensi lain.
-
-
-Mengedit file, menjalankan perintah, membaca file
-Mengedit file, menjalankan perintah, membaca file
-Coba dibuka filenya — kalau gambar Opick belum muncul juga di section Guest Star, kemungkinan link i.imgur.com/flCN2Eb.jpeg itu memang bukan direct link yang valid (misal gambarnya sudah dihapus atau butuh login). Kasih tahu saya kalau masih belum muncul, ya.
-
-
-Ahafest
-Kode · HTML 
-
-Ingin diberi tahu saat Claude merespons?
-
-
-
-
-
-Claude adalah AI dan bisa keliru. Harap periksa kembali respons.
-
-
-Ahafest · HTML
 <!DOCTYPE html>
 <!-- Favicon untuk Tab Browser - Menggunakan Logo AHAFEST -->
 <link rel="icon" type="image/png" href="https://i.imgur.com/aYj0llx.png">
- 
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -118,31 +27,31 @@ Ahafest · HTML
   html {
     scroll-behavior: smooth;
   }
- 
+
   body {
     overflow-x: hidden;
   }
- 
+
   .gradient-text {
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
- 
+
   .card-hover {
     transition: all 0.3s ease;
   }
- 
+
   .card-hover:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   }
- 
+
   .nav-link {
     position: relative;
   }
- 
+
   .nav-link::after {
     content: '';
     position: absolute;
@@ -153,16 +62,16 @@ Ahafest · HTML
     background-color: #f59e0b;
     transition: width 0.3s ease;
   }
- 
+
   .nav-link:hover::after {
     width: 100%;
   }
- 
+
   .timeline-item {
     position: relative;
     padding-left: 30px;
   }
- 
+
   .timeline-item::before {
     content: '';
     position: absolute;
@@ -172,7 +81,7 @@ Ahafest · HTML
     width: 2px;
     background: linear-gradient(to bottom, #f59e0b, #065f46);
   }
- 
+
   .timeline-item::after {
     content: '';
     position: absolute;
@@ -184,34 +93,34 @@ Ahafest · HTML
     border-radius: 50%;
     border: 3px solid #064e3b;
   }
- 
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
- 
+
   @keyframes float {
- 
+
     0%,
     100% {
       transform: translateY(0px);
     }
- 
+
     50% {
       transform: translateY(-20px);
     }
   }
- 
+
   .scroll-reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease;
   }
- 
+
   .scroll-reveal.active {
     opacity: 1;
     transform: translateY(0);
   }
- 
+
   #canvas-container {
     position: fixed;
     top: 0;
@@ -222,7 +131,7 @@ Ahafest · HTML
     pointer-events: none;
     overflow: hidden;
   }
- 
+
   .vine {
     position: fixed;
     width: 40px;
@@ -232,16 +141,16 @@ Ahafest · HTML
     z-index: -1;
     pointer-events: none;
   }
- 
+
   .vine-left {
     left: 0;
   }
- 
+
   .vine-right {
     right: 0;
     transform: scaleX(-1);
   }
- 
+
   .competition-card {
     background: rgba(6, 95, 70, 0.5);
     border: 1px solid #047857;
@@ -250,19 +159,19 @@ Ahafest · HTML
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
   }
- 
+
   .competition-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border-color: #f59e0b;
   }
- 
+
   .logo-container {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
- 
+
   .logo-icon {
     width: 40px;
     height: 40px;
@@ -273,7 +182,7 @@ Ahafest · HTML
     justify-content: center;
     flex-shrink: 0;
   }
- 
+
   .logo-text {
     font-size: 1.5rem;
     font-weight: 800;
@@ -282,11 +191,11 @@ Ahafest · HTML
   }
 </style>
 </head>
- 
+
 <body class="bg-primary text-white font-sans antialiased">
- 
+
   <html lang="id">
- 
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -316,31 +225,31 @@ Ahafest · HTML
       html {
         scroll-behavior: smooth;
       }
- 
+
       body {
         overflow-x: hidden;
       }
- 
+
       .gradient-text {
         background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
- 
+
       .card-hover {
         transition: all 0.3s ease;
       }
- 
+
       .card-hover:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       }
- 
+
       .nav-link {
         position: relative;
       }
- 
+
       .nav-link::after {
         content: '';
         position: absolute;
@@ -351,16 +260,16 @@ Ahafest · HTML
         background-color: #f59e0b;
         transition: width 0.3s ease;
       }
- 
+
       .nav-link:hover::after {
         width: 100%;
       }
- 
+
       .timeline-item {
         position: relative;
         padding-left: 30px;
       }
- 
+
       .timeline-item::before {
         content: '';
         position: absolute;
@@ -370,7 +279,7 @@ Ahafest · HTML
         width: 2px;
         background: linear-gradient(to bottom, #f59e0b, #065f46);
       }
- 
+
       .timeline-item::after {
         content: '';
         position: absolute;
@@ -382,34 +291,34 @@ Ahafest · HTML
         border-radius: 50%;
         border: 3px solid #064e3b;
       }
- 
+
       .animate-float {
         animation: float 6s ease-in-out infinite;
       }
- 
+
       @keyframes float {
- 
+
         0%,
         100% {
           transform: translateY(0px);
         }
- 
+
         50% {
           transform: translateY(-20px);
         }
       }
- 
+
       .scroll-reveal {
         opacity: 0;
         transform: translateY(30px);
         transition: all 0.8s ease;
       }
- 
+
       .scroll-reveal.active {
         opacity: 1;
         transform: translateY(0);
       }
- 
+
       #canvas-container {
         position: fixed;
         top: 0;
@@ -420,7 +329,7 @@ Ahafest · HTML
         pointer-events: none;
         overflow: hidden;
       }
- 
+
       .vine {
         position: fixed;
         width: 40px;
@@ -430,16 +339,16 @@ Ahafest · HTML
         z-index: -1;
         pointer-events: none;
       }
- 
+
       .vine-left {
         left: 0;
       }
- 
+
       .vine-right {
         right: 0;
         transform: scaleX(-1);
       }
- 
+
       /* Competition card without image */
       .competition-card {
         background: rgba(6, 95, 70, 0.5);
@@ -449,7 +358,7 @@ Ahafest · HTML
         transition: all 0.3s ease;
         backdrop-filter: blur(4px);
       }
- 
+
       .competition-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -457,16 +366,16 @@ Ahafest · HTML
       }
     </style>
   </head>
- 
+
   <body class="bg-primary text-white font-sans antialiased">
- 
+
     <!-- Artistic Background Elements -->
     <div id="canvas-container">
       <canvas id="leafCanvas"></canvas>
     </div>
     <div class="vine vine-left"></div>
     <div class="vine vine-right"></div>
- 
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-primary/95 backdrop-blur-md border-b border-emerald-800 transition-all duration-300" id="navbar">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -476,7 +385,7 @@ Ahafest · HTML
             <img src="https://i.imgur.com/aYj0llx.png" alt="Logo AHAFEST 2026" class="w-16 h-16 object-contain">
             <span class="text-2xl font-bold text-accent">AHAFEST 2026</span>
           </div>
- 
+
           <!-- Desktop Menu -->
           <div class="hidden md:flex items-center space-x-8">
             <button onclick="scrollToSection('home')" class="nav-link text-white hover:text-accent transition-colors font-medium">Home</button>
@@ -488,14 +397,14 @@ Ahafest · HTML
               Register Now
             </button>
           </div>
- 
+
           <!-- Mobile Menu Button -->
           <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
- 
+
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden md:hidden bg-secondary border-t border-emerald-700">
         <div class="px-4 py-4 space-y-3">
@@ -508,14 +417,14 @@ Ahafest · HTML
         </div>
       </div>
     </nav>
- 
+
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-90"></div>
- 
+
       <div class="absolute top-1/4 left-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-float"></div>
       <div class="absolute bottom-1/4 right-10 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
- 
+
       <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <div class="mb-6 inline-block animate-float">
           <span class="bg-accent/20 text-accent border border-accent/50 px-4 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
@@ -531,7 +440,7 @@ Ahafest · HTML
         <div class="text-lg md:text-xl text-emerald-200 mb-8 max-w-2xl mx-auto">
           <p style="font-size: 28px; font-family: Times, serif; color: rgb(255, 192, 0); font-weight: 700; margin: 0px auto 40px; max-width: 700px;">Steps in the woods, find all the goods</p>
         </div>
- 
+
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button onclick="scrollToSection('competitions')" class="bg-accent hover:bg-accentHover text-primary font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-2">
             <i class="fas fa-ticket-alt"></i>
@@ -543,12 +452,12 @@ Ahafest · HTML
           </button>
         </div>
       </div>
- 
+
       <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
         <i class="fas fa-chevron-down text-accent text-2xl"></i>
       </div>
     </section>
- 
+
     <!-- About Section -->
     <section id="about" class="py-20 px-4 relative">
       <div class="max-w-6xl mx-auto">
@@ -560,7 +469,7 @@ Ahafest · HTML
             menggabungkan kompetisi berkualitas dengan semangat kebersamaan dan pelayanan kepada masyarakat.
           </p>
         </div>
- 
+
         <div class="grid md:grid-cols-3 gap-8">
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-8 text-center card-hover scroll-reveal backdrop-blur-sm">
             <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -571,7 +480,7 @@ Ahafest · HTML
               Berbagai lomba menarik yang menguji kemampuan olahraga, intelektual, seni, dan spiritualitas
             </p>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-8 text-center card-hover scroll-reveal backdrop-blur-sm" style="transition-delay: 0.1s;">
             <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <i class="fas fa-users text-accent text-2xl"></i>
@@ -581,7 +490,7 @@ Ahafest · HTML
               Mempererat tali silaturahmi dan membangun komunitas yang solid melalui berbagai kegiatan
             </p>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-8 text-center card-hover scroll-reveal backdrop-blur-sm" style="transition-delay: 0.2s;">
             <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <i class="fas fa-heart text-accent text-2xl"></i>
@@ -592,7 +501,7 @@ Ahafest · HTML
             </p>
           </div>
         </div>
- 
+
         <div class="mt-16 bg-gradient-to-r from-secondary to-primary border border-emerald-600 rounded-2xl p-8 md:p-12 scroll-reveal backdrop-blur-sm">
           <div class="flex flex-col md:flex-row items-center gap-8">
             <div class="flex-1">
@@ -610,7 +519,7 @@ Ahafest · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- Countdown Section -->
     <section id="countdown" class="py-16 px-4 relative">
       <div class="max-w-4xl mx-auto text-center scroll-reveal">
@@ -637,7 +546,7 @@ Ahafest · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- Competitions Section - MODIFIED (No Images) -->
     <section id="competitions" class="py-20 px-4 relative">
       <div class="max-w-6xl mx-auto">
@@ -646,7 +555,7 @@ Ahafest · HTML
           <div class="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
           <p class="text-emerald-200 text-lg">Tunjukkan bakatmu dalam berbagai kategori kompetisi yang menarik!</p>
         </div>
- 
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Futsal -->
           <div class="competition-card scroll-reveal">
@@ -665,7 +574,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Catur -->
           <div class="competition-card scroll-reveal" style="transition-delay: 0.1s;">
             <div class="flex items-center justify-between mb-4">
@@ -683,7 +592,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Speech -->
           <div class="competition-card scroll-reveal" style="transition-delay: 0.2s;">
             <div class="flex items-center justify-between mb-4">
@@ -701,7 +610,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Ratoe Jaroh -->
           <div class="competition-card scroll-reveal">
             <div class="flex items-center justify-between mb-4">
@@ -719,7 +628,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- eFootball -->
           <div class="competition-card scroll-reveal" style="transition-delay: 0.1s;">
             <div class="flex items-center justify-between mb-4">
@@ -737,7 +646,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- MTQ -->
           <div class="competition-card scroll-reveal" style="transition-delay: 0.2s;">
             <div class="flex items-center justify-between mb-4">
@@ -756,7 +665,7 @@ Ahafest · HTML
             </div>
           </div>
         </div>
- 
+
         <!-- Prize Info -->
         <div class="mt-16 text-center scroll-reveal">
           <p class="text-emerald-300 mb-2">Total Hadiah lebih dari</p>
@@ -765,17 +674,17 @@ Ahafest · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- Guest Star Section -->
     <section id="guest-star" class="py-20 px-4 bg-secondary/30 relative">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 scroll-reveal">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Guest Star</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Whislist Guest Star</h2>
           <div class="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
-          <p class="text-emerald-200 text-lg">Menghadirkan penampilan spesial dari &mdash; nantikan keseruannya di AHAFEST 2026!</p>
+          <p class="text-emerald-200 text-lg">Menghadirkan penampilan spesial dari tiga bintang tamu &mdash; nantikan keseruannya di AHAFEST 2026!</p>
         </div>
- 
-        <div class="max-w-sm mx-auto">
+
+        <div class="grid md:grid-cols-3 gap-8">
           <div class="bg-secondary border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal backdrop-blur-sm">
             <div class="h-80 overflow-hidden relative group">
               <img src="https://i.imgur.com/flCN2Eb.jpeg" alt="Opick" class="w-full h-full object-cover">
@@ -788,15 +697,41 @@ Ahafest · HTML
               <p class="text-emerald-200 text-sm leading-relaxed">Nantikan penampilannya memeriahkan AHAFEST 2026!</p>
             </div>
           </div>
+
+          <div class="bg-secondary border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal backdrop-blur-sm" style="transition-delay: 0.1s;">
+            <div class="h-80 overflow-hidden relative group">
+              <img src="https://i.imgur.com/LQ4ibP5.jpeg" alt="Sal Priadi" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 text-center">
+              <span class="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                <i class="fas fa-music"></i> Artist
+              </span>
+              <h3 class="text-2xl font-bold text-accent mb-2">Sal Priadi</h3>
+              <p class="text-emerald-200 text-sm leading-relaxed">Nantikan penampilannya memeriahkan AHAFEST 2026!</p>
+            </div>
+          </div>
+
+          <div class="bg-secondary border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal backdrop-blur-sm" style="transition-delay: 0.2s;">
+            <div class="h-80 overflow-hidden relative group">
+              <img src="https://i.imgur.com/qNCs7zV.jpeg" alt="Feby Putri" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 text-center">
+              <span class="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                <i class="fas fa-music"></i> Artist
+              </span>
+              <h3 class="text-2xl font-bold text-accent mb-2">Feby Putri</h3>
+              <p class="text-emerald-200 text-sm leading-relaxed">Nantikan penampilannya memeriahkan AHAFEST 2026!</p>
+            </div>
+          </div>
         </div>
- 
+
         <div class="mt-10 text-center scroll-reveal">
           <button onclick="openTicketModal()" class="bg-accent hover:bg-accentHover text-primary font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 inline-flex items-center justify-center gap-2">
             <i class="fas fa-ticket-alt"></i>
             Dapatkan Tiket
           </button>
         </div>
- 
+
         <div class="mt-8 bg-primary border border-emerald-700 rounded-2xl p-8 text-center scroll-reveal backdrop-blur-sm">
           <p class="text-emerald-300 mb-2">Konser akan diadakan pada</p>
           <h4 class="text-3xl font-bold text-accent mb-2">18 Desember 2026</h4>
@@ -807,7 +742,7 @@ Ahafest · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- Merchant Section -->
     <section id="merchant" class="py-20 px-4 relative">
       <div class="max-w-6xl mx-auto">
@@ -816,9 +751,9 @@ Ahafest · HTML
           <div class="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
           <p class="text-emerald-200 text-lg">Dukung petualanganmu dengan gear eksklusif AHAFEST 2026!</p>
         </div>
- 
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
- 
+
           <!-- Merchant Card 1: T-Shirt -->
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal group backdrop-blur-sm">
             <div class="h-64 overflow-hidden relative">
@@ -835,7 +770,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Merchant Card 2: Long Sleeve -->
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal group backdrop-blur-sm" style="transition-delay: 0.1s;">
             <div class="h-64 overflow-hidden relative">
@@ -852,7 +787,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Merchant Card 3: Drawstring Bag -->
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal group backdrop-blur-sm" style="transition-delay: 0.2s;">
             <div class="h-64 overflow-hidden relative">
@@ -869,7 +804,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Merchant Card 4: Cap -->
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal group backdrop-blur-sm">
             <div class="h-64 overflow-hidden relative">
@@ -886,7 +821,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Merchant Card 5: Hand Fan -->
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal group backdrop-blur-sm" style="transition-delay: 0.1s;">
             <div class="h-64 overflow-hidden relative">
@@ -903,7 +838,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <!-- Merchant Card 6: Keychain -->
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl overflow-hidden card-hover scroll-reveal group backdrop-blur-sm" style="transition-delay: 0.2s;">
             <div class="h-64 overflow-hidden relative">
@@ -920,9 +855,9 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
         </div>
- 
+
         <div class="mt-12 text-center scroll-reveal">
           <a href="https://forms.gle/q2QGYGGnXDqHjBvv5 " target="_blank" class="inline-flex items-center gap-2 bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-primary font-bold py-3 px-10 rounded-full transition-all transform hover:scale-105">
             <span>Lihat Katalog Lengkap</span>
@@ -931,7 +866,7 @@ Ahafest · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- Schedule Section -->
     <section id="schedule" class="py-20 px-4 bg-secondary/30 relative">
       <div class="max-w-4xl mx-auto">
@@ -940,7 +875,7 @@ Ahafest · HTML
           <div class="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
           <p class="text-emerald-200 text-lg">Catat tanggal pentingnya dan jangan sampai ketinggalan!</p>
         </div>
- 
+
         <div class="space-y-6">
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
@@ -956,7 +891,7 @@ Ahafest · HTML
               </div>
             </div>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
               <i class="fas fa-person-running text-accent text-2xl mb-2"></i>
@@ -971,7 +906,7 @@ Ahafest · HTML
               </div>
             </div>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
               <i class="fas fa-calendar-alt text-accent text-2xl mb-2"></i>
@@ -986,7 +921,7 @@ Ahafest · HTML
               </div>
             </div>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
               <i class="fas fa-calendar-alt text-accent text-2xl mb-2"></i>
@@ -1001,7 +936,7 @@ Ahafest · HTML
               </div>
             </div>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
               <i class="fas fa-calendar-alt text-accent text-2xl mb-2"></i>
@@ -1016,7 +951,7 @@ Ahafest · HTML
               </div>
             </div>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
               <i class="fas fa-calendar-alt text-accent text-2xl mb-2"></i>
@@ -1031,7 +966,7 @@ Ahafest · HTML
               </div>
             </div>
           </div>
- 
+
           <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center scroll-reveal backdrop-blur-sm">
             <div class="bg-accent/20 border border-accent/50 rounded-xl p-4 text-center min-w-[140px]">
               <i class="fas fa-calendar-alt text-accent text-2xl mb-2"></i>
@@ -1049,7 +984,7 @@ Ahafest · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- Register Section -->
     <section id="register" class="py-20 px-4 relative">
       <div class="max-w-4xl mx-auto text-center scroll-reveal">
@@ -1061,7 +996,7 @@ Ahafest · HTML
         </button>
       </div>
     </section>
- 
+
     <!-- Footer -->
     <footer class="bg-dark border-t border-emerald-800 pt-16 pb-8 px-4 relative">
       <div class="max-w-6xl mx-auto">
@@ -1082,7 +1017,7 @@ Ahafest · HTML
               </a>
             </div>
           </div>
- 
+
           <div>
             <h4 class="text-accent font-bold text-lg mb-4">Quick Links</h4>
             <ul class="space-y-2">
@@ -1092,7 +1027,7 @@ Ahafest · HTML
               <li><button onclick="scrollToSection('guest-star')" class="text-emerald-400 hover:text-accent transition-colors text-sm">Guest Star</button></li>
             </ul>
           </div>
- 
+
           <div>
             <h4 class="text-accent font-bold text-lg mb-4">Kontak</h4>
             <ul class="space-y-3">
@@ -1113,13 +1048,13 @@ Ahafest · HTML
             </ul>
           </div>
         </div>
- 
+
         <div class="border-t border-emerald-800 pt-8 text-center">
           <p class="text-emerald-500 text-sm">© 2026 AHAFEST. All rights reserved. | Pondok Pesantren Al-Hamidiyah</p>
         </div>
       </div>
     </footer>
- 
+
     <!-- Modal -->
     <div id="modal" class="fixed inset-0 z-[60] hidden">
       <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
@@ -1136,7 +1071,7 @@ Ahafest · HTML
         </div>
       </div>
     </div>
- 
+
     <!-- Ticket Modal -->
     <div id="ticketModal" class="fixed inset-0 z-[60] hidden">
       <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeTicketModal()"></div>
@@ -1156,13 +1091,13 @@ Ahafest · HTML
         </div>
       </div>
     </div>
- 
+
     <script>
       function toggleMobileMenu() {
         const menu = document.getElementById('mobileMenu');
         menu.classList.toggle('hidden');
       }
- 
+
       function scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -1172,20 +1107,20 @@ Ahafest · HTML
           document.getElementById('mobileMenu').classList.add('hidden');
         }
       }
- 
+
       function openModal(title) {
         document.getElementById('modalContent').textContent = title;
         document.getElementById('modal').classList.remove('hidden');
       }
- 
+
       function closeModal() {
         document.getElementById('modal').classList.add('hidden');
       }
- 
+
       function openTicketModal() {
         document.getElementById('ticketModal').classList.remove('hidden');
       }
- 
+
       function closeTicketModal() {
         document.getElementById('ticketModal').classList.add('hidden');
       }
@@ -1241,7 +1176,7 @@ Ahafest · HTML
       const ctx = canvas.getContext('2d');
       let width, height;
       let leaves = [];
- 
+
       function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
@@ -1287,7 +1222,7 @@ Ahafest · HTML
       for (let i = 0; i < 50; i++) {
         leaves.push(new Leaf());
       }
- 
+
       function animate() {
         ctx.clearRect(0, 0, width, height);
         leaves.forEach(leaf => {
@@ -1299,8 +1234,5 @@ Ahafest · HTML
       animate();
     </script>
   </body>
- 
+
   </html>
- 
-
-
