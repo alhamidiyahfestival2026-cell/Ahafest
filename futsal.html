@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futsal AHAFEST 2026 - Jadwal, Klasemen & Tim</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/aYj0llx.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#064e3b',
+            secondary: '#065f46',
+            accent: '#f59e0b',
+            accentHover: '#d97706',
+            dark: '#022c22',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #f59e0b;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .scroll-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .vine {
+      position: fixed;
+      width: 40px;
+      height: 100vh;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 Q 30 50 20 100 T 20 200' stroke='%23065f46' stroke-width='2' fill='none' opacity='0.4'/%3E%3Cpath d='M20 20 Q 10 70 20 120' stroke='%23065f46' stroke-width='2' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .vine-left {
+      left: 0;
+    }
+
+    .vine-right {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    /* ===== FUTSAL TABS ===== */
+    .futsal-tab-btn {
+      transition: all 0.25s ease;
+    }
+
+    .futsal-tab-btn.active {
+      background: #f59e0b;
+      color: #064e3b;
+    }
+
+    .futsal-tab-btn:not(.active) {
+      background: transparent;
+      color: #a7f3d0;
+      border: 1px solid #047857;
+    }
+
+    .futsal-panel {
+      display: none;
+    }
+
+    .futsal-panel.active {
+      display: block;
+    }
+
+    .futsal-table th {
+      background: rgba(4, 120, 87, 0.4);
+      color: #f59e0b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+
+    .futsal-table td,
+    .futsal-table th {
+      padding: 0.75rem 1rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .futsal-table tbody tr:nth-child(even) {
+      background: rgba(6, 95, 70, 0.25);
+    }
+  </style>
+</head>
+
+<body class="bg-primary text-white font-sans antialiased">
+
+  <!-- Artistic Background Elements -->
+  <div id="canvas-container">
+    <canvas id="leafCanvas"></canvas>
+  </div>
+  <div class="vine vine-left"></div>
+  <div class="vine vine-right"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-primary/95 backdrop-blur-md border-b border-emerald-800 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-3">
+          <img src="https://i.imgur.com/aYj0llx.png" alt="Logo AHAFEST 2026" class="w-16 h-16 object-contain">
+          <span class="text-2xl font-bold text-accent">AHAFEST 2026</span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-white hover:text-accent transition-colors font-medium">Beranda</a>
+          <a href="index.html#competitions" class="nav-link text-white hover:text-accent transition-colors font-medium">Kompetisi</a>
+          <span class="nav-link text-accent font-semibold">Futsal</span>
+          <a href="index.html#schedule" class="nav-link text-white hover:text-accent transition-colors font-medium">Jadwal Acara</a>
+          <a href="https://forms.gle/yejJQKa7GPboSUoUA" target="_blank" class="bg-accent hover:bg-accentHover text-primary font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105">
+            Daftar Tim
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-secondary border-t border-emerald-700">
+      <div class="px-4 py-4 space-y-3">
+        <a href="index.html" class="block w-full text-left py-2 text-white hover:text-accent">Beranda</a>
+        <a href="index.html#competitions" class="block w-full text-left py-2 text-white hover:text-accent">Kompetisi</a>
+        <span class="block w-full text-left py-2 text-accent font-semibold">Futsal</span>
+        <a href="index.html#schedule" class="block w-full text-left py-2 text-white hover:text-accent">Jadwal Acara</a>
+        <a href="https://forms.gle/yejJQKa7GPboSUoUA" target="_blank" class="block w-full text-left py-2 text-accent font-bold">Daftar Tim</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative min-h-[60vh] flex items-center justify-center pt-24 pb-10 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-90"></div>
+    <div class="absolute top-1/4 left-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 right-10 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <a href="index.html" class="inline-flex items-center gap-2 text-emerald-300 hover:text-accent text-sm mb-6 transition-colors">
+        <i class="fas fa-arrow-left"></i> Kembali ke AHAFEST 2026
+      </a>
+      <div class="mb-6 inline-block animate-float">
+        <span class="bg-accent/20 text-accent border border-accent/50 px-4 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
+          <i class="fas fa-futbol mr-1"></i> Kompetisi Olahraga · AHAFEST 2026
+        </span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">Futsal AHAFEST</h1>
+      <p class="text-emerald-200 text-lg max-w-2xl mx-auto">
+        Turnamen futsal antar peserta AHAFEST 2026. Cek jadwal pertandingan, klasemen sementara, dan daftar tim yang berlaga di sini.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+        <a href="https://forms.gle/yejJQKa7GPboSUoUA" target="_blank" class="bg-accent hover:bg-accentHover text-primary font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+          <i class="fas fa-plus"></i> Daftar Tim
+        </a>
+        <a href="https://drive.google.com/drive/folders/14LXsSxhjei2x6rTPuRGOkrhXVedSsQP_?usp=sharing" target="_blank" class="border-2 border-accent text-accent hover:bg-accent hover:text-primary font-bold py-3 px-8 rounded-full transition-all flex items-center justify-center gap-2">
+          <i class="fas fa-book"></i> Guidebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Futsal Hub: Jadwal, Klasemen & Tim -->
+  <section class="py-16 px-4 bg-secondary/30 relative">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10 scroll-reveal">
+        <p class="text-emerald-200 text-sm max-w-2xl mx-auto">
+          *Data masih berupa placeholder dan akan diperbarui panitia mendekati hari pelaksanaan.
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex justify-center gap-3 mb-10 scroll-reveal flex-wrap">
+        <button id="tabBtn-jadwal" onclick="switchFutsalTab('jadwal')" class="futsal-tab-btn active font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
+          <i class="fas fa-calendar-days"></i> Jadwal
+        </button>
+        <button id="tabBtn-klasemen" onclick="switchFutsalTab('klasemen')" class="futsal-tab-btn font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
+          <i class="fas fa-ranking-star"></i> Klasemen
+        </button>
+        <button id="tabBtn-tim" onclick="switchFutsalTab('tim')" class="futsal-tab-btn font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
+          <i class="fas fa-shield-halved"></i> Tim
+        </button>
+      </div>
+
+      <!-- Panel: Jadwal -->
+      <div id="panel-jadwal" class="futsal-panel active scroll-reveal">
+        <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-4 md:p-6 backdrop-blur-sm overflow-x-auto">
+          <table class="futsal-table w-full min-w-[640px] text-sm">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Pertandingan</th>
+                <th>Skor</th>
+                <th>Venue</th>
+              </tr>
+            </thead>
+            <tbody class="text-emerald-100">
+              <tr><td>1</td><td>TBA</td><td>TBA</td><td>Tim 1 vs Tim 2</td><td>-</td><td>TBA</td></tr>
+              <tr><td>2</td><td>TBA</td><td>TBA</td><td>Tim 3 vs Tim 4</td><td>-</td><td>TBA</td></tr>
+              <tr><td>3</td><td>TBA</td><td>TBA</td><td>Tim 5 vs Tim 6</td><td>-</td><td>TBA</td></tr>
+              <tr><td>4</td><td>TBA</td><td>TBA</td><td>Tim 7 vs Tim 8</td><td>-</td><td>TBA</td></tr>
+              <tr><td>5</td><td>TBA</td><td>TBA</td><td>Tim 1 vs Tim 3</td><td>-</td><td>TBA</td></tr>
+              <tr><td>6</td><td>TBA</td><td>TBA</td><td>Tim 2 vs Tim 4</td><td>-</td><td>TBA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Panel: Klasemen -->
+      <div id="panel-klasemen" class="futsal-panel scroll-reveal">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-4 md:p-6 backdrop-blur-sm overflow-x-auto">
+            <h3 class="text-accent font-bold mb-4 text-lg flex items-center gap-2"><i class="fas fa-layer-group"></i> Grup A</h3>
+            <table class="futsal-table w-full min-w-[420px] text-sm">
+              <thead>
+                <tr><th>Tim</th><th>M</th><th>MN</th><th>S</th><th>K</th><th>SG</th><th>Pts</th></tr>
+              </thead>
+              <tbody class="text-emerald-100">
+                <tr><td class="text-left">Tim 1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td class="text-left">Tim 2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td class="text-left">Tim 3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td class="text-left">Tim 4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-4 md:p-6 backdrop-blur-sm overflow-x-auto">
+            <h3 class="text-accent font-bold mb-4 text-lg flex items-center gap-2"><i class="fas fa-layer-group"></i> Grup B</h3>
+            <table class="futsal-table w-full min-w-[420px] text-sm">
+              <thead>
+                <tr><th>Tim</th><th>M</th><th>MN</th><th>S</th><th>K</th><th>SG</th><th>Pts</th></tr>
+              </thead>
+              <tbody class="text-emerald-100">
+                <tr><td class="text-left">Tim 5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td class="text-left">Tim 6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td class="text-left">Tim 7</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td class="text-left">Tim 8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="text-emerald-400 text-xs text-center mt-4">M = Main, MN = Menang, S = Seri, K = Kalah, SG = Selisih Gol, Pts = Poin</p>
+      </div>
+
+      <!-- Panel: Tim -->
+      <div id="panel-tim" class="futsal-panel scroll-reveal">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 1</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 2</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 3</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 4</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 5</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 6</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 7</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
+            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-accent text-xl"></i>
+            </div>
+            <h4 class="font-bold text-accent">Tim 8</h4>
+            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regulasi Singkat -->
+  <section class="py-16 px-4 relative">
+    <div class="max-w-4xl mx-auto text-center scroll-reveal">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 gradient-text">Punya Pertanyaan Soal Futsal?</h2>
+      <p class="text-emerald-200 mb-8">Lihat guidebook lengkap atau hubungi panitia AHAFEST untuk info regulasi, jadwal technical meeting, dan lainnya.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="index.html#schedule" class="bg-accent hover:bg-accentHover text-primary font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+          <i class="fas fa-calendar-days"></i> Lihat Jadwal Acara AHAFEST
+        </a>
+        <a href="index.html#competitions" class="border-2 border-accent text-accent hover:bg-accent hover:text-primary font-bold py-3 px-8 rounded-full transition-all flex items-center justify-center gap-2">
+          <i class="fas fa-list"></i> Lihat Semua Kompetisi
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark border-t border-emerald-800 pt-12 pb-8 px-4 relative">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex items-center justify-center space-x-3 mb-4">
+        <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
+          <i class="fas fa-tree text-primary text-xl"></i>
+        </div>
+        <span class="text-2xl font-bold text-accent">AHAFEST 2026</span>
+      </div>
+      <p class="text-emerald-400 text-sm mb-4">Festival tahunan Pondok Pesantren Al-Hamidiyah</p>
+      <p class="text-emerald-500 text-sm">© 2026 AHAFEST. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+
+    function switchFutsalTab(tab) {
+      const tabs = ['jadwal', 'klasemen', 'tim'];
+      tabs.forEach((t) => {
+        document.getElementById('panel-' + t).classList.toggle('active', t === tab);
+        document.getElementById('tabBtn-' + t).classList.toggle('active', t === tab);
+      });
+    }
+
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, observerOptions);
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-lg');
+        navbar.classList.replace('bg-primary/95', 'bg-primary');
+      } else {
+        navbar.classList.remove('shadow-lg');
+        navbar.classList.replace('bg-primary', 'bg-primary/95');
+      }
+    });
+
+    // Daun jatuh (sama seperti halaman utama)
+    const canvas = document.getElementById('leafCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, leaves = [];
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    class Leaf {
+      constructor() { this.init(); }
+      init() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * -height;
+        this.size = Math.random() * 15 + 10;
+        this.speedY = Math.random() * 1 + 0.5;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 2 - 1;
+        this.opacity = Math.random() * 0.5 + 0.2;
+        const colors = ['#065f46', '#047857', '#f59e0b', '#d97706'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += Math.sin(this.y * 0.01) + this.speedX;
+        this.rotation += this.rotationSpeed;
+        if (this.y > height) this.init();
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.size / 2, this.size, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+    for (let i = 0; i < 50; i++) leaves.push(new Leaf());
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      leaves.forEach(leaf => { leaf.update(); leaf.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+
+</html>
