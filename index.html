@@ -190,7 +190,7 @@
     letter-spacing: -0.5px;
   }
 
-  /* ===== LOCK SCREEN ===== */
+  /* ===== LOCK SCREEN (dinonaktifkan) ===== */
   body.is-locked {
     overflow: hidden;
     height: 100vh;
@@ -201,7 +201,7 @@
     inset: 0;
     z-index: 999;
     background: radial-gradient(circle at 50% 20%, #065f46 0%, #022c22 70%);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 24px;
@@ -244,8 +244,8 @@
 
   <body class="bg-primary text-white font-sans antialiased">
 
-    <!-- ===================== LOCK SCREEN (shown until 1 Sept 2026 00:00 WIB) ===================== -->
-    <div id="lockScreen">
+    <!-- ===================== LOCK SCREEN (DINONAKTIFKAN — website langsung terbuka) ===================== -->
+    <div id="lockScreen" style="display:none;">
       <div class="lock-card">
         <img src="https://i.imgur.com/aYj0llx.png" alt="Logo AHAFEST 2026" class="w-20 h-20 object-contain mx-auto mb-6">
         <div class="lock-icon">
@@ -306,6 +306,9 @@
             <button onclick="scrollToSection('about')" class="nav-link text-white hover:text-accent transition-colors font-medium">About</button>
             <button onclick="scrollToSection('competitions')" class="nav-link text-white hover:text-accent transition-colors font-medium">Competitions</button>
             <button onclick="scrollToSection('schedule')" class="nav-link text-white hover:text-accent transition-colors font-medium">Schedule</button>
+            <a href="futsal.html" class="nav-link text-white hover:text-accent transition-colors font-medium flex items-center gap-2">
+              <i class="fas fa-futbol text-accent text-sm"></i> Futsal
+            </a>
             <button onclick="scrollToSection('competitions')" class="bg-accent hover:bg-accentHover text-primary font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105">
               Register Now
             </button>
@@ -325,6 +328,9 @@
           <button onclick="scrollToSection('about')" class="block w-full text-left py-2 text-white hover:text-accent">About</button>
           <button onclick="scrollToSection('competitions')" class="block w-full text-left py-2 text-white hover:text-accent">Competitions</button>
           <button onclick="scrollToSection('schedule')" class="block w-full text-left py-2 text-white hover:text-accent">Schedule</button>
+          <a href="futsal.html" class="flex items-center gap-2 w-full text-left py-2 text-white hover:text-accent">
+            <i class="fas fa-futbol text-accent text-sm"></i> Futsal
+          </a>
           <button onclick="scrollToSection('competitions')" class="block w-full text-left py-2 text-accent font-bold">Register Now</button>
         </div>
       </div>
@@ -485,6 +491,9 @@
                 <i class="fas fa-book"></i> Guidebook
               </a>
             </div>
+            <a href="futsal.html" class="mt-2 block text-center border border-accent/60 text-accent hover:bg-accent hover:text-primary font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex items-center justify-center gap-2">
+              <i class="fas fa-ranking-star"></i> Jadwal & Klasemen Futsal
+            </a>
           </div>
 
           <!-- Catur -->
@@ -869,6 +878,7 @@
               <li><button onclick="scrollToSection('about')" class="text-emerald-400 hover:text-accent transition-colors text-sm">Tentang</button></li>
               <li><button onclick="scrollToSection('competitions')" class="text-emerald-400 hover:text-accent transition-colors text-sm">Kompetisi</button></li>
               <li><button onclick="scrollToSection('schedule')" class="text-emerald-400 hover:text-accent transition-colors text-sm">Jadwal</button></li>
+              <li><a href="futsal.html" class="text-emerald-400 hover:text-accent transition-colors text-sm">Futsal</a></li>
             </ul>
           </div>
 
@@ -1077,9 +1087,12 @@
       }
       animate();
 
-      // ===================== REGISTRATION LOCK LOGIC =====================
-      // Website tetap terkunci (menampilkan lock screen) sampai
-      // 1 September 2026, 00:00 WIB. Setelah itu, lock screen otomatis hilang.
+      // ===================== REGISTRATION LOCK LOGIC (DINONAKTIFKAN) =====================
+      // Lock screen sudah dinonaktifkan secara permanen di file ini, jadi
+      // website akan langsung terbuka tanpa menunggu tanggal 1 September 2026.
+      // Kode asli di bawah ini disimpan (tidak dijalankan) sebagai referensi,
+      // seandainya lock ingin diaktifkan kembali di kemudian hari.
+      /*
       (function () {
         const unlockTarget = new Date('2026-09-01T00:00:00+07:00').getTime();
         const lockScreen = document.getElementById('lockScreen');
@@ -1121,6 +1134,7 @@
         updateLockCountdown();
         const lockTimer = setInterval(updateLockCountdown, 1000);
       })();
+      */
     </script>
   </body>
 
