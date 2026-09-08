@@ -266,9 +266,6 @@
         <button id="tabBtn-jadwal" onclick="switchFutsalTab('jadwal')" class="futsal-tab-btn active font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
           <i class="fas fa-calendar-days"></i> Jadwal
         </button>
-        <button id="tabBtn-klasemen" onclick="switchFutsalTab('klasemen')" class="futsal-tab-btn font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
-          <i class="fas fa-ranking-star"></i> Klasemen
-        </button>
         <button id="tabBtn-tim" onclick="switchFutsalTab('tim')" class="futsal-tab-btn font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
           <i class="fas fa-shield-halved"></i> Tim
         </button>
@@ -298,41 +295,6 @@
             </tbody>
           </table>
         </div>
-      </div>
-
-      <!-- Panel: Klasemen -->
-      <div id="panel-klasemen" class="futsal-panel scroll-reveal">
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-4 md:p-6 backdrop-blur-sm overflow-x-auto">
-            <h3 class="text-accent font-bold mb-4 text-lg flex items-center gap-2"><i class="fas fa-layer-group"></i> Grup A</h3>
-            <table class="futsal-table w-full min-w-[420px] text-sm">
-              <thead>
-                <tr><th>Tim</th><th>M</th><th>MN</th><th>S</th><th>K</th><th>SG</th><th>Pts</th></tr>
-              </thead>
-              <tbody class="text-emerald-100">
-                <tr><td class="text-left">Tim 1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td class="text-left">Tim 2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td class="text-left">Tim 3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td class="text-left">Tim 4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-4 md:p-6 backdrop-blur-sm overflow-x-auto">
-            <h3 class="text-accent font-bold mb-4 text-lg flex items-center gap-2"><i class="fas fa-layer-group"></i> Grup B</h3>
-            <table class="futsal-table w-full min-w-[420px] text-sm">
-              <thead>
-                <tr><th>Tim</th><th>M</th><th>MN</th><th>S</th><th>K</th><th>SG</th><th>Pts</th></tr>
-              </thead>
-              <tbody class="text-emerald-100">
-                <tr><td class="text-left">Tim 5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td class="text-left">Tim 6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td class="text-left">Tim 7</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td class="text-left">Tim 8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <p class="text-emerald-400 text-xs text-center mt-4">M = Main, MN = Menang, S = Seri, K = Kalah, SG = Selisih Gol, Pts = Poin</p>
       </div>
 
       <!-- Panel: Tim -->
@@ -435,7 +397,7 @@
     }
 
     function switchFutsalTab(tab) {
-      const tabs = ['jadwal', 'klasemen', 'tim'];
+      const tabs = ['jadwal', 'tim'];
       tabs.forEach((t) => {
         document.getElementById('panel-' + t).classList.toggle('active', t === tab);
         document.getElementById('tabBtn-' + t).classList.toggle('active', t === tab);
