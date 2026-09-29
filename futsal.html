@@ -13,163 +13,55 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
-          },
-          colors: {
-            primary: '#064e3b',
-            secondary: '#065f46',
-            accent: '#f59e0b',
-            accentHover: '#d97706',
-            dark: '#022c22',
-          }
+          fontFamily: { sans: ['Poppins', 'sans-serif'] },
+          colors: { primary: '#064e3b', secondary: '#065f46', accent: '#f59e0b', accentHover: '#d97706', dark: '#022c22' }
         }
       }
     }
   </script>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      overflow-x: hidden;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-link {
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #f59e0b;
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-20px);
-      }
-    }
-
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-
-    .scroll-reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    #canvas-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .vine {
-      position: fixed;
-      width: 40px;
-      height: 100vh;
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 Q 30 50 20 100 T 20 200' stroke='%23065f46' stroke-width='2' fill='none' opacity='0.4'/%3E%3Cpath d='M20 20 Q 10 70 20 120' stroke='%23065f46' stroke-width='2' fill='none' opacity='0.3'/%3E%3C/svg%3E");
-      background-repeat: repeat-y;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .vine-left {
-      left: 0;
-    }
-
-    .vine-right {
-      right: 0;
-      transform: scaleX(-1);
-    }
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    .gradient-text { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #f59e0b; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+    .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+    #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
+    .vine { position: fixed; width: 40px; height: 100vh; background-image: url("data:image/svg+xml,%3Csvg width='40' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 Q 30 50 20 100 T 20 200' stroke='%23065f46' stroke-width='2' fill='none' opacity='0.4'/%3E%3Cpath d='M20 20 Q 10 70 20 120' stroke='%23065f46' stroke-width='2' fill='none' opacity='0.3'/%3E%3C/svg%3E"); background-repeat: repeat-y; z-index: -1; pointer-events: none; }
+    .vine-left { left: 0; }
+    .vine-right { right: 0; transform: scaleX(-1); }
 
     /* ===== FUTSAL TABS ===== */
-    .futsal-tab-btn {
-      transition: all 0.25s ease;
-    }
+    .futsal-tab-btn { transition: all 0.25s ease; }
+    .futsal-tab-btn.active { background: #f59e0b; color: #064e3b; }
+    .futsal-tab-btn:not(.active) { background: transparent; color: #a7f3d0; border: 1px solid #047857; }
+    .futsal-panel { display: none; }
+    .futsal-panel.active { display: block; }
+    .futsal-table th { background: rgba(4, 120, 87, 0.4); color: #f59e0b; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+    .futsal-table td, .futsal-table th { padding: 0.75rem 1rem; text-align: center; white-space: nowrap; }
+    .futsal-table tbody tr:nth-child(even) { background: rgba(6, 95, 70, 0.25); }
 
-    .futsal-tab-btn.active {
-      background: #f59e0b;
-      color: #064e3b;
-    }
+    /* ===== KATEGORI ===== */
+    .cat-btn { transition: all 0.25s ease; }
+    .cat-btn.active { background: #ecfdf5; color: #064e3b; border-color: #ecfdf5; }
+    .cat-btn:not(.active) { background: rgba(6, 95, 70, 0.4); color: #a7f3d0; border: 1px solid #047857; }
+    .cat-btn:not(.active):hover { border-color: #f59e0b; color: #f59e0b; }
 
-    .futsal-tab-btn:not(.active) {
-      background: transparent;
-      color: #a7f3d0;
-      border: 1px solid #047857;
-    }
-
-    .futsal-panel {
-      display: none;
-    }
-
-    .futsal-panel.active {
-      display: block;
-    }
-
-    .futsal-table th {
-      background: rgba(4, 120, 87, 0.4);
-      color: #f59e0b;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.75rem;
-    }
-
-    .futsal-table td,
-    .futsal-table th {
-      padding: 0.75rem 1rem;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .futsal-table tbody tr:nth-child(even) {
-      background: rgba(6, 95, 70, 0.25);
-    }
+    /* ===== TEAM LINK & MODAL ===== */
+    .team-link { color: #fcd34d; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; cursor: pointer; }
+    .team-link:hover { color: #fff; }
+    #teamModal { display: none; }
+    #teamModal.open { display: flex; }
+    .modal-card { animation: pop 0.25s ease; }
+    @keyframes pop { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .modal-card, .animate-float { animation: none; } }
+    button:focus-visible, a:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
   </style>
 </head>
 
@@ -186,31 +78,22 @@
   <nav class="fixed w-full z-50 bg-primary/95 backdrop-blur-md border-b border-emerald-800 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
-        <!-- Logo -->
         <a href="index.html" class="flex items-center space-x-3">
           <img src="https://i.imgur.com/aYj0llx.png" alt="Logo AHAFEST 2026" class="w-16 h-16 object-contain">
           <span class="text-2xl font-bold text-accent">AHAFEST 2026</span>
         </a>
-
-        <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
           <a href="index.html" class="nav-link text-white hover:text-accent transition-colors font-medium">Beranda</a>
           <a href="index.html#competitions" class="nav-link text-white hover:text-accent transition-colors font-medium">Kompetisi</a>
           <span class="nav-link text-accent font-semibold">Futsal</span>
           <a href="index.html#schedule" class="nav-link text-white hover:text-accent transition-colors font-medium">Jadwal Acara</a>
-          <a href="https://forms.gle/yejJQKa7GPboSUoUA" target="_blank" class="bg-accent hover:bg-accentHover text-primary font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105">
-            Daftar Tim
-          </a>
+          <a href="https://forms.gle/yejJQKa7GPboSUoUA" target="_blank" class="bg-accent hover:bg-accentHover text-primary font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105">Daftar Tim</a>
         </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+        <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()" aria-label="Menu">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
-
-    <!-- Mobile Menu -->
     <div id="mobileMenu" class="hidden md:hidden bg-secondary border-t border-emerald-700">
       <div class="px-4 py-4 space-y-3">
         <a href="index.html" class="block w-full text-left py-2 text-white hover:text-accent">Beranda</a>
@@ -252,7 +135,7 @@
     </div>
   </section>
 
-  <!-- Futsal Hub: Jadwal, Klasemen & Tim -->
+  <!-- Futsal Hub: Jadwal & Tim -->
   <section class="py-16 px-4 bg-secondary/30 relative">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10 scroll-reveal">
@@ -262,7 +145,7 @@
       </div>
 
       <!-- Tabs -->
-      <div class="flex justify-center gap-3 mb-10 scroll-reveal flex-wrap">
+      <div class="flex justify-center gap-3 mb-6 scroll-reveal flex-wrap">
         <button id="tabBtn-jadwal" onclick="switchFutsalTab('jadwal')" class="futsal-tab-btn active font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2">
           <i class="fas fa-calendar-days"></i> Jadwal
         </button>
@@ -271,97 +154,50 @@
         </button>
       </div>
 
+      <!-- Kategori (berlaku untuk Jadwal & Tim) -->
+      <div class="flex justify-center items-center gap-2 mb-8 scroll-reveal flex-wrap" role="group" aria-label="Kategori">
+        <span class="text-emerald-300 text-sm mr-1">Kategori:</span>
+        <button id="catBtn-SD" onclick="setCategory('SD')" class="cat-btn active font-semibold py-1.5 px-5 rounded-lg text-sm">SD</button>
+        <button id="catBtn-SMP" onclick="setCategory('SMP')" class="cat-btn font-semibold py-1.5 px-5 rounded-lg text-sm">SMP</button>
+        <button id="catBtn-SMA" onclick="setCategory('SMA')" class="cat-btn font-semibold py-1.5 px-5 rounded-lg text-sm">SMA</button>
+      </div>
+
       <!-- Panel: Jadwal -->
       <div id="panel-jadwal" class="futsal-panel active scroll-reveal">
+        <p class="text-center text-emerald-300 text-xs mb-3">Klik nama tim untuk melihat semua jadwalnya.</p>
         <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-4 md:p-6 backdrop-blur-sm overflow-x-auto">
           <table class="futsal-table w-full min-w-[640px] text-sm">
             <thead>
-              <tr>
-                <th>No</th>
-                <th>Tanggal</th>
-                <th>Waktu</th>
-                <th>Pertandingan</th>
-                <th>Skor</th>
-                <th>Venue</th>
-              </tr>
+              <tr><th>No</th><th>Tanggal</th><th>Waktu</th><th>Pertandingan</th><th>Skor</th><th>Venue</th></tr>
             </thead>
-            <tbody class="text-emerald-100">
-              <tr><td>1</td><td>-</td><td>-</td><td>Tim 1 vs Tim 2</td><td>-</td><td>-</td></tr>
-              <tr><td>2</td><td>-</td><td>-</td><td>Tim 3 vs Tim 4</td><td>-</td><td>-</td></tr>
-              <tr><td>3</td><td>-</td><td>-</td><td>Tim 5 vs Tim 6</td><td>-</td><td>-</td></tr>
-              <tr><td>4</td><td>-</td><td>-</td><td>Tim 7 vs Tim 8</td><td>-</td><td>-</td></tr>
-              <tr><td>5</td><td>-</td><td>-</td><td>Tim 1 vs Tim 3</td><td>-</td><td>-</td></tr>
-              <tr><td>6</td><td>-</td><td>-</td><td>Tim 2 vs Tim 4</td><td>-</td><td>-</td></tr>
-            </tbody>
+            <tbody id="jadwalBody" class="text-emerald-100"></tbody>
           </table>
         </div>
       </div>
 
       <!-- Panel: Tim -->
       <div id="panel-tim" class="futsal-panel scroll-reveal">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 1</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 2</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 3</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 4</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 5</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 6</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 7</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-          <div class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm">
-            <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shield-halved text-accent text-xl"></i>
-            </div>
-            <h4 class="font-bold text-accent">Tim 8</h4>
-            <p class="text-emerald-300 text-xs mt-1">Sekolah: -</p>
-          </div>
-        </div>
+        <p class="text-center text-emerald-300 text-xs mb-3">Klik kartu tim untuk melihat jadwal pertandingannya.</p>
+        <div id="timGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
       </div>
     </div>
   </section>
 
-  <!-- Regulasi Singkat -->
+  <!-- Modal jadwal tim -->
+  <div id="teamModal" class="fixed inset-0 z-[60] items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onclick="if(event.target===this)closeTeam()" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card bg-primary border border-emerald-600 rounded-2xl w-full max-w-lg max-h-[85vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-start justify-between gap-4 p-5 border-b border-emerald-700">
+        <div>
+          <h3 id="modalTitle" class="text-xl font-bold text-accent"></h3>
+          <p id="modalSub" class="text-emerald-300 text-xs mt-1"></p>
+        </div>
+        <button onclick="closeTeam()" class="text-emerald-300 hover:text-white text-xl leading-none" aria-label="Tutup"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div id="modalBody" class="p-5 space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- Info -->
   <section class="py-16 px-4 relative">
     <div class="max-w-4xl mx-auto text-center scroll-reveal">
       <h2 class="text-2xl md:text-3xl font-bold mb-4 gradient-text">Punya Pertanyaan Soal Futsal?</h2>
@@ -392,24 +228,97 @@
   </footer>
 
   <script>
+    /* =====================================================
+       DATA FUTSAL — edit di sini saja.
+       - teams   : nama tim & asal sekolah per kategori
+       - matches : a & b = nomor urut tim (0 = tim pertama, dst)
+                   date, time, score (contoh '2 - 1'), venue
+       ===================================================== */
+    const pairs = [[0, 1], [2, 3], [4, 5], [6, 7], [0, 2], [1, 3]];
+    const mkTeams = (p) => Array.from({ length: 8 }, (_, i) => ({ name: 'Tim ' + p + ' ' + (i + 1), school: '-' }));
+    const mkMatches = () => pairs.map(([a, b]) => ({ a, b, date: '-', time: '-', score: '-', venue: '-' }));
+    const DATA = {
+      SD:  { teams: mkTeams('SD'),  matches: mkMatches() },
+      SMP: { teams: mkTeams('SMP'), matches: mkMatches() },
+      SMA: { teams: mkTeams('SMA'), matches: mkMatches() }
+    };
+
+    let currentCat = 'SD';
+
     function toggleMobileMenu() {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     }
 
     function switchFutsalTab(tab) {
-      const tabs = ['jadwal', 'tim'];
-      tabs.forEach((t) => {
+      ['jadwal', 'tim'].forEach((t) => {
         document.getElementById('panel-' + t).classList.toggle('active', t === tab);
         document.getElementById('tabBtn-' + t).classList.toggle('active', t === tab);
       });
     }
 
-    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
+    function setCategory(cat) {
+      currentCat = cat;
+      Object.keys(DATA).forEach((c) => {
+        const b = document.getElementById('catBtn-' + c);
+        b.classList.toggle('active', c === cat);
+        b.setAttribute('aria-pressed', c === cat);
       });
-    }, observerOptions);
+      renderJadwal();
+      renderTim();
+    }
+
+    function renderJadwal() {
+      const { teams, matches } = DATA[currentCat];
+      const link = (i) => '<button class="team-link" onclick="openTeam(' + i + ')">' + teams[i].name + '</button>';
+      document.getElementById('jadwalBody').innerHTML = matches.map((m, n) =>
+        '<tr><td>' + (n + 1) + '</td><td>' + m.date + '</td><td>' + m.time + '</td><td>' +
+        link(m.a) + ' vs ' + link(m.b) + '</td><td>' + m.score + '</td><td>' + m.venue + '</td></tr>'
+      ).join('');
+    }
+
+    function renderTim() {
+      document.getElementById('timGrid').innerHTML = DATA[currentCat].teams.map((t, i) =>
+        '<button onclick="openTeam(' + i + ')" class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm w-full">' +
+        '<div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-shield-halved text-accent text-xl"></i></div>' +
+        '<h4 class="font-bold text-accent">' + t.name + '</h4>' +
+        '<p class="text-emerald-300 text-xs mt-1">Sekolah: ' + t.school + '</p>' +
+        '<p class="text-emerald-400 text-xs mt-3"><i class="fas fa-calendar-days mr-1"></i>Lihat jadwal</p></button>'
+      ).join('');
+    }
+
+    let lastFocus = null;
+    function openTeam(i) {
+      const { teams, matches } = DATA[currentCat];
+      const mine = matches.filter((m) => m.a === i || m.b === i);
+      document.getElementById('modalTitle').textContent = teams[i].name;
+      document.getElementById('modalSub').textContent = 'Kategori ' + currentCat + ' · Sekolah: ' + teams[i].school;
+      document.getElementById('modalBody').innerHTML = mine.length ? mine.map((m) => {
+        const opp = teams[m.a === i ? m.b : m.a].name;
+        return '<div class="bg-secondary/50 border border-emerald-700 rounded-xl p-4">' +
+          '<div class="flex justify-between items-center gap-3"><span class="font-semibold">vs ' + opp + '</span>' +
+          '<span class="text-accent font-bold text-sm">' + m.score + '</span></div>' +
+          '<div class="text-emerald-300 text-xs mt-2 flex flex-wrap gap-x-4 gap-y-1">' +
+          '<span><i class="fas fa-calendar mr-1"></i>' + m.date + '</span>' +
+          '<span><i class="fas fa-clock mr-1"></i>' + m.time + '</span>' +
+          '<span><i class="fas fa-location-dot mr-1"></i>' + m.venue + '</span></div></div>';
+      }).join('') : '<p class="text-emerald-300 text-sm">Belum ada jadwal untuk tim ini.</p>';
+      lastFocus = document.activeElement;
+      document.getElementById('teamModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTeam() {
+      document.getElementById('teamModal').classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTeam(); });
+
+    setCategory('SD');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
     document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
 
     window.addEventListener('scroll', () => {
@@ -423,7 +332,7 @@
       }
     });
 
-    // Daun jatuh (sama seperti halaman utama)
+    // Daun jatuh
     const canvas = document.getElementById('leafCanvas');
     const ctx = canvas.getContext('2d');
     let width, height, leaves = [];
