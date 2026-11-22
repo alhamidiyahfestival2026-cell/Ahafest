@@ -234,8 +234,7 @@
        - matches : a & b = nomor urut tim (0 = tim pertama, dst)
                    date, time, score (contoh '2 - 1'), venue
        ===================================================== */
-    const M = (a, b) => ({ a, b, date: '-', time: '-', score: '-', venue: '-' });
-
+    // Contoh isi jadwal: { a: 0, b: 1, date: '10 Jan 2026', time: '08.00', score: '-', venue: 'Lapangan A' }
     const DATA = {
       SD: {
         teams: [
@@ -243,7 +242,7 @@
           { name: 'SDN BEJI 03',     logo: 'https://i.imgur.com/l3hqWow.png' },
           { name: 'SDN CIGANJUR 01', logo: 'https://i.imgur.com/uz8hpXk.png' }
         ],
-        matches: [M(0, 1), M(0, 2), M(1, 2)]
+        matches: []
       },
       SMP: {
         teams: [
@@ -251,14 +250,14 @@
           { name: 'SMP ISLAM AL-ISTIQOMAH', logo: 'https://i.imgur.com/5YSAl25.png' },
           { name: 'SMPN 5 DEPOK',           logo: 'https://i.imgur.com/OduVWl7.png' }
         ],
-        matches: [M(0, 1), M(0, 2), M(1, 2)]
+        matches: []
       },
       SMA: {
         teams: [
           { name: "SMA TQT MADINATUL QUR'AN", logo: 'https://i.imgur.com/Cso790O.png' },
           { name: 'SMK YADIKA 12',            logo: 'https://i.imgur.com/6cxLhvH.png' }
         ],
-        matches: [M(0, 1)]
+        matches: []
       }
     };
 
@@ -289,6 +288,10 @@
     function renderJadwal() {
       const { teams, matches } = DATA[currentCat];
       const link = (i) => '<button class="team-link" onclick="openTeam(' + i + ')">' + teams[i].name + '</button>';
+      if (!matches.length) {
+        document.getElementById('jadwalBody').innerHTML = '<tr><td colspan="6" class="py-8 text-emerald-300">Jadwal belum tersedia.</td></tr>';
+        return;
+      }
       document.getElementById('jadwalBody').innerHTML = matches.map((m, n) =>
         '<tr><td>' + (n + 1) + '</td><td>' + m.date + '</td><td>' + m.time + '</td><td>' +
         link(m.a) + ' vs ' + link(m.b) + '</td><td>' + m.score + '</td><td>' + m.venue + '</td></tr>'
