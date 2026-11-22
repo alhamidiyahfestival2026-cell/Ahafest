@@ -140,7 +140,7 @@
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10 scroll-reveal">
         <p class="text-emerald-200 text-sm max-w-2xl mx-auto">
-          *Data masih berupa placeholder dan akan diperbarui panitia mendekati hari pelaksanaan.
+          *Jadwal pertandingan akan diperbarui panitia mendekati hari pelaksanaan.
         </p>
       </div>
 
@@ -178,7 +178,7 @@
       <!-- Panel: Tim -->
       <div id="panel-tim" class="futsal-panel scroll-reveal">
         <p class="text-center text-emerald-300 text-xs mb-3">Klik kartu tim untuk melihat jadwal pertandingannya.</p>
-        <div id="timGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+        <div id="timGrid" class="flex flex-wrap justify-center gap-5"></div>
       </div>
     </div>
   </section>
@@ -230,17 +230,36 @@
   <script>
     /* =====================================================
        DATA FUTSAL — edit di sini saja.
-       - teams   : nama tim & asal sekolah per kategori
+       - teams   : name & logo per kategori
        - matches : a & b = nomor urut tim (0 = tim pertama, dst)
                    date, time, score (contoh '2 - 1'), venue
        ===================================================== */
-    const pairs = [[0, 1], [2, 3], [4, 5], [6, 7], [0, 2], [1, 3]];
-    const mkTeams = (p) => Array.from({ length: 8 }, (_, i) => ({ name: 'Tim ' + p + ' ' + (i + 1), school: '-' }));
-    const mkMatches = () => pairs.map(([a, b]) => ({ a, b, date: '-', time: '-', score: '-', venue: '-' }));
+    const M = (a, b) => ({ a, b, date: '-', time: '-', score: '-', venue: '-' });
+
     const DATA = {
-      SD:  { teams: mkTeams('SD'),  matches: mkMatches() },
-      SMP: { teams: mkTeams('SMP'), matches: mkMatches() },
-      SMA: { teams: mkTeams('SMA'), matches: mkMatches() }
+      SD: {
+        teams: [
+          { name: 'Mi PKP JIS',      logo: 'https://i.imgur.com/Cpc49OB.png' },
+          { name: 'SDN BEJI 03',     logo: 'https://i.imgur.com/l3hqWow.png' },
+          { name: 'SDN CIGANJUR 01', logo: 'https://i.imgur.com/uz8hpXk.png' }
+        ],
+        matches: [M(0, 1), M(0, 2), M(1, 2)]
+      },
+      SMP: {
+        teams: [
+          { name: 'MTS ALKHAIRIYAH',        logo: 'https://i.imgur.com/u03tvfL.png' },
+          { name: 'SMP ISLAM AL-ISTIQOMAH', logo: 'https://i.imgur.com/5YSAl25.png' },
+          { name: 'SMPN 5 DEPOK',           logo: 'https://i.imgur.com/OduVWl7.png' }
+        ],
+        matches: [M(0, 1), M(0, 2), M(1, 2)]
+      },
+      SMA: {
+        teams: [
+          { name: "SMA TQT MADINATUL QUR'AN", logo: 'https://i.imgur.com/Cso790O.png' },
+          { name: 'SMK YADIKA 12',            logo: 'https://i.imgur.com/6cxLhvH.png' }
+        ],
+        matches: [M(0, 1)]
+      }
     };
 
     let currentCat = 'SD';
@@ -278,10 +297,10 @@
 
     function renderTim() {
       document.getElementById('timGrid').innerHTML = DATA[currentCat].teams.map((t, i) =>
-        '<button onclick="openTeam(' + i + ')" class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm w-full">' +
-        '<div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-shield-halved text-accent text-xl"></i></div>' +
+        '<button onclick="openTeam(' + i + ')" class="bg-secondary/50 border border-emerald-700 rounded-2xl p-6 text-center card-hover backdrop-blur-sm w-full sm:w-60">' +
+        '<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">' +
+        '<img src="' + t.logo + '" alt="Logo ' + t.name + '" class="w-full h-full object-contain p-1" onerror="this.style.display=\'none\'"></div>' +
         '<h4 class="font-bold text-accent">' + t.name + '</h4>' +
-        '<p class="text-emerald-300 text-xs mt-1">Sekolah: ' + t.school + '</p>' +
         '<p class="text-emerald-400 text-xs mt-3"><i class="fas fa-calendar-days mr-1"></i>Lihat jadwal</p></button>'
       ).join('');
     }
@@ -291,7 +310,7 @@
       const { teams, matches } = DATA[currentCat];
       const mine = matches.filter((m) => m.a === i || m.b === i);
       document.getElementById('modalTitle').textContent = teams[i].name;
-      document.getElementById('modalSub').textContent = 'Kategori ' + currentCat + ' · Sekolah: ' + teams[i].school;
+      document.getElementById('modalSub').textContent = 'Kategori ' + currentCat;
       document.getElementById('modalBody').innerHTML = mine.length ? mine.map((m) => {
         const opp = teams[m.a === i ? m.b : m.a].name;
         return '<div class="bg-secondary/50 border border-emerald-700 rounded-xl p-4">' +
